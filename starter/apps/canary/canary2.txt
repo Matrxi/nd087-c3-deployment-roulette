@@ -1,0 +1,27 @@
+matrxi@ubuntu:~/Music/nd087-c3-deployment-roulette/starter/apps/canary$ kubectl get all
+NAME                               READY   STATUS    RESTARTS   AGE
+pod/blue-8475cbdf46-647xl          1/1     Running   0          10m
+pod/blue-8475cbdf46-9mp7l          1/1     Running   0          10m
+pod/blue-8475cbdf46-vvfbj          1/1     Running   0          10m
+pod/canary-v1-64598c676f-ftb99     1/1     Running   0          10m
+pod/canary-v2-5dc9c56687-8gvm7     1/1     Running   0          92s
+pod/canary-v2-5dc9c56687-mdtdn     1/1     Running   0          63s
+pod/canary-v2-5dc9c56687-s4j4n     1/1     Running   0          28s
+pod/hello-world-794458d64d-wkgvs   1/1     Running   0          10m
+
+NAME                  TYPE           CLUSTER-IP       EXTERNAL-IP                                                                     PORT(S)        AGE
+service/blue-svc      LoadBalancer   172.20.238.249   a9e013db95fd24c528ef4f4c1bc293f6-112de2c897012129.elb.us-east-2.amazonaws.com   80:31377/TCP   12m
+service/canary-svc    ClusterIP      172.20.159.125   <none>                                                                          80/TCP         7m1s
+service/hello-world   LoadBalancer   172.20.255.196   a5359993c7155488dbe60d04125bf533-eec5b157397095a8.elb.us-east-2.amazonaws.com   80:32272/TCP   10m
+
+NAME                          READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/blue          3/3     3            3           10m
+deployment.apps/canary-v1     1/1     1            1           10m
+deployment.apps/canary-v2     3/3     3            3           3m12s
+deployment.apps/hello-world   1/1     1            1           10m
+
+NAME                                     DESIRED   CURRENT   READY   AGE
+replicaset.apps/blue-8475cbdf46          3         3         3       10m
+replicaset.apps/canary-v1-64598c676f     1         1         1       10m
+replicaset.apps/canary-v2-5dc9c56687     3         3         3       3m13s
+replicaset.apps/hello-world-794458d64d   1         1         1       10m
